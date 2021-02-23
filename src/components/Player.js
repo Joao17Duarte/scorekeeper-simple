@@ -1,13 +1,14 @@
 import styled from 'styled-components/macro'
+import Button from './Button'
 
 export default function Player({ name, score, onMinus, onPlus }) {
   return (
     <PlayerData>
       {name}
       <PlayerScore>
-        <button onClick={onMinus}>-</button>
+        <Button onClick={onMinus}>-</Button>
         <span>{score}</span>
-        <button onClick={onPlus}>+</button>
+        <Button onClick={onPlus}>+</Button>
       </PlayerScore>
     </PlayerData>
   )
