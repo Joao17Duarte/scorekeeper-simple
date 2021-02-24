@@ -10,43 +10,49 @@ import PlayerForm from './PlayerForm'
 
 export default function App() {
   const [players, setPlayers] = useState([])
+  const [currentPage, setCurrentPage] = useState('play')
   return (
-    <AppGrid>
-      <PlayerForm onAddPlayer={handleAddPlayer} />
-      {players.map(({ name, score }, index) => (
-        <Player
-          key={name}
-          name={name}
-          score={score}
-          onPlus={() => handlePlus(index)}
-          onMinus={() => handleMinus(index)}
-        />
+    <AppLayout>
+      {currentPage === 'play' && (
+        <div>
+          <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
+        </div>
+      )}
 
-      ))}
-      <ButtonGrid>
-        <Button onClick={resetScores}>Reset scores</Button>
-        <DangerButton onClick={resetAll}>Reset all</DangerButton>
-      </ButtonGrid>
+      {currentPage === 'game' && (
+        <div>
+          <Header text="Carcassonne" />
+          {players.map(({ name, score }, index) => (
+            <Player
+              key={name}
+              name={name}
+              score={score}
+              onPlus={() => handlePlus(index)}
+              onMinus={() => handleMinus(index)}
+            />
+          ))}
+          <Button onClick={resetScores}>Reset scores</Button>
+          <Button onClick={() => console.log('End game')}>End game</Button>
+        </div>
+      )}
 
-      <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
-      <Navigation
-        activeIndex={0}
-        onNavigate={index => console.log('onNavigate', index)}
-      />
-      <Header text="Carcassonne" />
-      <HistoryEntry
-        nameOfGame="Carcassonne"
-        players={[
-          { name: 'John Doe', score: 10 },
-          { name: 'Jane Doe', score: 20 },
-        ]}
-      />
-    </AppGrid>
+      {currentPage === 'history' && (
+        <div>
+          <HistoryEntry
+            nameOfGame="Carcassonne"
+            players={[
+              { name: 'John Doe', score: 10 },
+              { name: 'Jane Doe', score: 20 },
+            ]}
+          />
+        </div>
+      )}
+
+      {(currentPage === 'play' || currentPage === 'history') && (
+        <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      )}
+    </AppLayout>
   )
-
-  function handleAddPlayer(name) {
-    setPlayers(oldPlayers => [...oldPlayers, { name, score: 0 }])
-  }
 
   function resetAll() {
     setPlayers([])
@@ -75,9 +81,7 @@ export default function App() {
   }
 }
 
-
-
-const AppGrid = styled.div`
+const AppLayout = styled.div`
   display: grid;
   gap: 20px;
   padding: 20px;

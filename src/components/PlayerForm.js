@@ -1,9 +1,7 @@
-
 import styled from 'styled-components/macro'
 
 export default function PlayerForm({ onAddPlayer }) {
   return (
-
     <FormPlayer onSubmit={handleSubmit}>
       <label>
         Add player:
@@ -23,7 +21,6 @@ export default function PlayerForm({ onAddPlayer }) {
     input.focus()
   }
 }
-
 
 const FormPlayer = styled.form`
   & input {
