@@ -6,16 +6,19 @@ import Header from './Header'
 import HistoryEntry from './HistoryEntry'
 import Navigation from './Navigation'
 import Player from './Player'
-// import PlayerForm from './PlayerForm'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function App() {
   const [players, setPlayers] = useState([])
+  const [nameOfGame, setNameOfGame] = useState('')
   const [currentPage, setCurrentPage] = useState('play')
+  const [history, setHistory] = useState([])
+
   return (
     <AppLayout>
       {currentPage === 'play' && (
         <div>
-          <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
+          <GameForm onCreateGame={createGame} />
         </div>
       )}
 
@@ -32,20 +35,16 @@ export default function App() {
             />
           ))}
           <Button onClick={resetScores}>Reset scores</Button>
-          <Button onClick={() => console.log('End game')}>End game</Button>
+          <Button onClick={endGame}>End game</Button>
         </div>
       )}
 
       {currentPage === 'history' && (
-        <div>
-          <HistoryEntry
-            nameOfGame="Carcassonne"
-            players={[
-              { name: 'John Doe', score: 10 },
-              { name: 'Jane Doe', score: 20 },
-            ]}
-          />
-        </div>
+        <HistoryWrapper>
+          {history.map(({ nameOfGame, players, id }) => (
+            <HistoryEntry key={id} nameOfGame={nameOfGame} players={players} />
+          ))}
+        </HistoryWrapper>
       )}
 
       {(currentPage === 'play' || currentPage === 'history') && (
@@ -54,9 +53,17 @@ export default function App() {
     </AppLayout>
   )
 
-  // eslint-disable-next-line no-unused-vars
-  function resetAll() {
+  function createGame({ nameOfGame, playerNames }) {
+    setNameOfGame(nameOfGame)
+    setPlayers(playerNames.map(name => ({ name, score: 0 })))
+    setCurrentPage('game')
+  }
+
+  function endGame() {
+    setHistory([{ players, nameOfGame, id: uuidv4() }, ...history])
     setPlayers([])
+    setNameOfGame('')
+    setCurrentPage('play')
   }
 
   function resetScores() {
@@ -87,12 +94,7 @@ const AppLayout = styled.div`
   gap: 20px;
   padding: 20px;
 `
-// const DangerButton = styled(Button)`
-//   background-color: mistyrose;
-//   border: 1px solid red;
-// `
-// const ButtonGrid = styled.div`
-//   display: grid;
-//   gap: 5px;
-//   grid-template-columns: 1fr 1fr;
-// `
+const HistoryWrapper = styled.div`
+  display: grid;
+  gap: 30px;
+`

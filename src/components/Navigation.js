@@ -22,4 +22,8 @@ export default function Navigation({ onNavigate, currentPage }) {
 
 const Nav = styled.nav`
   display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 `
