@@ -5,4 +5,5 @@ export default styled.button`
   ${props => props.isActive && 'color: white;'}
   border: 1px solid black;
   width: 100%;
+
 `

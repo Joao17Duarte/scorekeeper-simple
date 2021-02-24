@@ -11,7 +11,7 @@ import PlayerForm from './PlayerForm'
 export default function App() {
   const [players, setPlayers] = useState([])
   return (
-    <AppLayout>
+    <AppGrid>
       <PlayerForm onAddPlayer={handleAddPlayer} />
       {players.map(({ name, score }, index) => (
         <Player
@@ -21,7 +21,7 @@ export default function App() {
           onPlus={() => handlePlus(index)}
           onMinus={() => handleMinus(index)}
         />
-        // React.createElement(Player, {name, score, onPlus: () => handlePlus(index)})
+
       ))}
       <ButtonGrid>
         <Button onClick={resetScores}>Reset scores</Button>
@@ -41,7 +41,7 @@ export default function App() {
           { name: 'Jane Doe', score: 20 },
         ]}
       />
-    </AppLayout>
+    </AppGrid>
   )
 
   function handleAddPlayer(name) {
@@ -75,17 +75,21 @@ export default function App() {
   }
 }
 
-const AppLayout = styled.div`
+
+
+const AppGrid = styled.div`
   display: grid;
   gap: 20px;
   padding: 20px;
 `
+
 const DangerButton = styled(Button)`
-  background-color: mistyrose;
-  border: 1px solid red;
+  background: rgba(255, 70, 50, 0.8);
+  color: white;
 `
+
 const ButtonGrid = styled.div`
   display: grid;
-  gap: 5px;
+  gap: 10px;
   grid-template-columns: 1fr 1fr;
 `
