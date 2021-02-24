@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components/macro'
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
 * {
@@ -6,9 +6,10 @@ export default createGlobalStyle`
 }
 
 body {
-  margin: 0;
+  font-family: 'Montserrat', sans-serif;
   font-size: 112.5%;
-  font-family: sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 input,
