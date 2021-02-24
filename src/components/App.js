@@ -6,7 +6,7 @@ import Header from './Header'
 import HistoryEntry from './HistoryEntry'
 import Navigation from './Navigation'
 import Player from './Player'
-import PlayerForm from './PlayerForm'
+// import PlayerForm from './PlayerForm'
 
 export default function App() {
   const [players, setPlayers] = useState([])
@@ -54,6 +54,7 @@ export default function App() {
     </AppLayout>
   )
 
+  // eslint-disable-next-line no-unused-vars
   function resetAll() {
     setPlayers([])
   }
@@ -86,14 +87,12 @@ const AppLayout = styled.div`
   gap: 20px;
   padding: 20px;
 `
-
-const DangerButton = styled(Button)`
-  background: rgba(255, 70, 50, 0.8);
-  color: white;
-`
-
-const ButtonGrid = styled.div`
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 1fr 1fr;
-`
+// const DangerButton = styled(Button)`
+//   background-color: mistyrose;
+//   border: 1px solid red;
+// `
+// const ButtonGrid = styled.div`
+//   display: grid;
+//   gap: 5px;
+//   grid-template-columns: 1fr 1fr;
+// `
