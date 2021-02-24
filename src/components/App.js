@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
-import Button from './Button'
-import GameForm from './GameForm'
-import Header from './Header'
-import HistoryEntry from './HistoryEntry'
+
 import Navigation from './Navigation'
-import Player from './Player'
 import { v4 as uuidv4 } from 'uuid'
+import GamePage from './GamePage'
+import PlayPage from './PlayPage'
+import HistoryPage from './HistoryPage'
 
 export default function App() {
   const [players, setPlayers] = useState([])
@@ -16,36 +15,20 @@ export default function App() {
 
   return (
     <AppLayout>
-      {currentPage === 'play' && (
-        <div>
-          <GameForm onCreateGame={createGame} />
-        </div>
-      )}
+      {currentPage === 'play' && <PlayPage createGame={createGame} />}
 
       {currentPage === 'game' && (
-        <div>
-          <Header text="Carcassonne" />
-          {players.map(({ name, score }, index) => (
-            <Player
-              key={name}
-              name={name}
-              score={score}
-              onPlus={() => handlePlus(index)}
-              onMinus={() => handleMinus(index)}
-            />
-          ))}
-          <Button onClick={resetScores}>Reset scores</Button>
-          <Button onClick={endGame}>End game</Button>
-        </div>
+        <GamePage
+          nameOfGame={nameOfGame}
+          players={players}
+          handleMinus={handleMinus}
+          handlePlus={handlePlus}
+          resetScores={resetScores}
+          endGame={endGame}
+        />
       )}
 
-      {currentPage === 'history' && (
-        <HistoryWrapper>
-          {history.map(({ nameOfGame, players, id }) => (
-            <HistoryEntry key={id} nameOfGame={nameOfGame} players={players} />
-          ))}
-        </HistoryWrapper>
-      )}
+      {currentPage === 'history' && <HistoryPage history={history} />}
 
       {(currentPage === 'play' || currentPage === 'history') && (
         <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
@@ -93,8 +76,4 @@ const AppLayout = styled.div`
   display: grid;
   gap: 20px;
   padding: 20px;
-`
-const HistoryWrapper = styled.div`
-  display: grid;
-  gap: 30px;
 `
