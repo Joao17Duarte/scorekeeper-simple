@@ -1,6 +1,12 @@
 import React from 'react'
-import './Header.css'
+import styled from 'styled-components'
 
 export default function Header({ text }) {
-  return <header className="Header">{text}</header>
+  return <HeaderApp>{text}</HeaderApp>
 }
+
+const HeaderApp = styled.header`
+  padding: 12px;
+  text-align: center;
+  text-transform: uppercase;
+`

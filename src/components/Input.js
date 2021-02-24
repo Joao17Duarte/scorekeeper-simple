@@ -1,11 +1,19 @@
 import React from 'react'
-import './Input.css'
+import styled from 'styled-components'
 
 export default function Input({ labelText, placeholder, name }) {
   return (
-    <label className="Input">
+    <LabelGrid>
       {labelText}
       <input name={name} placeholder={placeholder} type="text" />
-    </label>
+    </LabelGrid>
   )
 }
+
+const LabelGrid = styled.label`
+  display: grid;
+  gap: 4px;
+  input {
+    border: 2px solid #bbb;
+  }
+`
