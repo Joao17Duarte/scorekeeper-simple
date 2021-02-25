@@ -1,3 +1,4 @@
+import styled from 'styled-components/macro'
 import Button from './Button'
 import Header from './Header'
 import Player from './Player'

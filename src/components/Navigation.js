@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Button from './Button'
 import { NavLink } from 'react-router-dom'
 
+
 export default function Navigation() {
   return (
     <Nav>
