@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export default function GameForm({ onCreateGame }) {
   return (
-    <Form onSubmit={handleSubmit}>
+    <FormGrid onSubmit={handleSubmit}>
       <Input
         name="nameOfGame"
         labelText="Name of game"
@@ -16,7 +16,7 @@ export default function GameForm({ onCreateGame }) {
         placeholder="e.g. John Doe, Jane Doe"
       />
       <Button>Create game</Button>
-    </Form>
+    </FormGrid>
   )
 
   function handleSubmit(event) {
@@ -33,7 +33,7 @@ export default function GameForm({ onCreateGame }) {
   }
 }
 
-const Form = styled.form`
+const FormGrid = styled.form`
   display: grid;
   gap: 10px;
 `

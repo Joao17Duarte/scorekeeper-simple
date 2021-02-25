@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import HistoryEntry from './HistoryEntry'
 
 export default function HistoryPage({ history }) {
@@ -13,5 +13,5 @@ export default function HistoryPage({ history }) {
 
 const HistoryWrapper = styled.div`
   display: grid;
-  gap: 30px;
+  gap: 28px;
 `
