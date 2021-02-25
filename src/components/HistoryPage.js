@@ -13,5 +13,5 @@ export default function HistoryPage({ history }) {
 
 const HistoryWrapper = styled.div`
   display: grid;
-  gap: 30px;
+  gap: 28px;
 `

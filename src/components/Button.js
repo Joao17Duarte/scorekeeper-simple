@@ -1,12 +1,16 @@
 import styled from 'styled-components/macro'
 
 export default styled.button`
-  background-color: ${props =>
-    props.isActive ? 'rgba(255,70,50,0.8)' : 'lightgray'};
+  background-color: ${props => (props.isActive ? '#333' : 'lightgray')};
   ${props => props.isActive && 'color: white;'}
-  border: none;
-  margin: 5px;
-  border-radius: 5px;
+  border: 1px solid black;
   width: 100%;
-  font-family: inherit;
+  padding: 8px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  &.active {
+    background-color: #333;
+    color: white;
+  }
 `

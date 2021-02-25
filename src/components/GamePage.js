@@ -6,30 +6,25 @@ import Player from './Player'
 export default function GamePage({
   nameOfGame,
   players,
-  handlePlus,
-  handleMinus,
-  resetScores,
-  endGame,
+  onMinus,
+  onPlus,
+  onReset,
+  onEnd,
 }) {
   return (
-    <GameWrapper>
+    <div>
       <Header>{nameOfGame}</Header>
       {players.map(({ name, score }, index) => (
         <Player
           key={name}
           name={name}
           score={score}
-          onPlus={() => handlePlus(index)}
-          onMinus={() => handleMinus(index)}
+          onPlus={() => onPlus(index)}
+          onMinus={() => onMinus(index)}
         />
       ))}
-      <Button onClick={resetScores}>Reset scores</Button>
-      <Button onClick={endGame}>End game</Button>
-    </GameWrapper>
+      <Button onClick={onReset}>Reset scores</Button>
+      <Button onClick={onEnd}>End game</Button>
+    </div>
   )
 }
-
-const GameWrapper = styled.div`
-  display: grid;
-  gap: 10px;
-`
